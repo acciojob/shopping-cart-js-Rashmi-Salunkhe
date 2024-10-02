@@ -1,4 +1,3 @@
-//your code here
 // Function to add item to the cart and store in Local Storage
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get cart from Local Storage or initialize
@@ -13,11 +12,16 @@ function displayCart() {
     let cartItems = document.getElementById('cart-items');
     cartItems.innerHTML = ''; // Clear previous items
 
-    cart.forEach((item, index) => {
-        let li = document.createElement('li');
-        li.textContent = `${item} (Item ${index + 1})`;
-        cartItems.appendChild(li);
-    });
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<li>No items in cart</li>';
+    } else {
+        cart.forEach((item, index) => {
+            let li = document.createElement('li');
+            li.id = `item-${index + 1}`;  // Give each cart item a unique id
+            li.textContent = `${item} (Item ${index + 1})`;
+            cartItems.appendChild(li);
+        });
+    }
 }
 
 // Function to clear the cart
