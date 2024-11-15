@@ -1,39 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="./styles.css">
+	<link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
+	<!-- the entire body must be written by student -->
+	  <h1>Add Item to Cart</h1>
 
-    <h1>Shopping Cart</h1>
-    
-    <!-- Display products -->
-    <div id="products">
-        <div class="product">
-            <h3>Product 1</h3>
-            <button onclick="addToCart('Product 1')">Add to Cart</button>
-        </div>
-        <div class="product">
-            <h3>Product 2</h3>
-            <button onclick="addToCart('Product 2')">Add to Cart</button>
-        </div>
-        <div class="product">
-            <h3>Product 3</h3>
-            <button onclick="addToCart('Product 3')">Add to Cart</button>
-        </div>
+    <div id="productForm">
+        <input type="text" id="item" placeholder="Item name">
+        <input type="number" id="price" placeholder="Price">
+        <input type="button" value="Add to Cart" onclick="addToCart()">
     </div>
 
-    <!-- Display cart -->
     <h2>Your Cart</h2>
-    <div id="cart">
-        <ul id="cart-items"></ul>
-    </div>
+    <ul id="cart"></ul>
+    
+    <script type="text/javascript" src="./script.js">
+</script>
 
-    <button onclick="clearCart()">Clear Cart</button>
-
-    <script src="./script.js"></script>
 </body>
+
 </html>
