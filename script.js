@@ -1,34 +1,31 @@
-// Function to add item to the cart and store in Local Storage
-function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get cart from Local Storage or initialize
-    cart.push(product); // Add product to the cart
-    localStorage.setItem('cart', JSON.stringify(cart)); // Save the updated cart to Local Storage
-    displayCart(); // Update cart display
-}
+// Array to store cart items
+let cartItems = [];
 
-// Function to display cart items
-function displayCart() {
-    let cart = JSON.parse(localStorage.getItem('cart')) || []; // Get cart from Local Storage
-    let cartItems = document.getElementById('cart-items');
-    cartItems.innerHTML = ''; // Clear previous items
+function addToCart() {
+    const item = document.getElementById('item').value;
+    const price = document.getElementById('price').value;
 
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<li>No items in cart</li>';
-    } else {
-        cart.forEach((item, index) => {
-            let li = document.createElement('li');
-            li.id = `item-${index + 1}`;  // Give each cart item a unique id
-            li.textContent = `${item} (Item ${index + 1})`;
-            cartItems.appendChild(li);
-        });
+    if (item && price) {
+        // Add item to the cart array
+        cartItems.push({ item, price });
+
+        // Render the cart items
+        renderCart();
     }
 }
 
-// Function to clear the cart
-function clearCart() {
-    localStorage.removeItem('cart'); // Clear cart from Local Storage
-    displayCart(); // Update cart display
+function renderCart() {
+    const cart = document.getElementById('cart');
+    cart.innerHTML = ''; // Clear the cart before rendering
+
+    cartItems.forEach((cartItem) => {
+        const li = document.createElement('li');
+        li.textContent = `${cartItem.item} - Rs.${cartItem.price}`;
+        cart.appendChild(li);
+    });
 }
 
-// Display cart when the page loads
-window.onload = displayCart;
+// Example: Adding "Apple" and "Banana" to the cart array and rendering them
+// cartItems.push({ item: 'Apple', price: '10' });
+// cartItems.push({ item: 'Banana', price: '20' });
+renderCart();
